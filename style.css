@@ -1,0 +1,338 @@
+/* --- Variables & Themes --- */
+:root {
+    --primary: #330fb4;
+    --primary-hover: #4f46e5;
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #115994;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Global Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: var(--transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* --- App Container --- */
+.app-container {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+/* --- Header --- */
+header {
+    margin-bottom: 2rem;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+#theme-toggle {
+    background: var(--border);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.header-info #current-date {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.header-info #task-count {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* --- Input Section --- */
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+#add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 1.2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#add-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.error-msg {
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* --- Filters --- */
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* --- Task List --- */
+.todo-list-container {
+    min-height: 200px;
+}
+
+#todo-list {
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-body);
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    animation: fadeIn 0.4s ease forwards;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.todo-item:hover {
+    transform: translateX(5px);
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.todo-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    margin-right: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.todo-item.completed .todo-checkbox {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+.todo-checkbox i {
+    color: white;
+    font-size: 0.7rem;
+    display: none;
+}
+
+.todo-item.completed .todo-checkbox i {
+    display: block;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.edit-btn { color: var(--primary); }
+.delete-btn { color: var(--danger); }
+
+.action-btn:hover {
+    background: var(--border);
+}
+
+/* --- Empty State --- */
+.empty-state {
+    text-align: center;
+    padding: 3rem 0;
+    display: none;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--border);
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    font-weight: 600;
+}
+
+.empty-state span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* --- Footer Controls --- */
+.controls {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.main-footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideOut {
+    to { opacity: 0; transform: translateX(50px); }
+}
+
+.slide-out {
+    animation: slideOut 0.3s ease forwards;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 1.5rem;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+}

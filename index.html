@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow // Modern Todo Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h1>Task-Flow</h1>
+                </div>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+            <div class="header-info">
+                <p id="current-date">Monday, 12 June</p>
+                <p id="task-count">0 tasks remaining</p>
+            </div>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <form id="todo-form">
+                <div class="input-group">
+                    <input type="text" id="todo-input" placeholder="What needs to be done?" autocomplete="off">
+                    <button type="submit" id="add-btn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+                <span class="error-msg" id="error-msg">Please enter a task</span>
+            </form>
+        </section>
+
+        <!-- Filters Section -->
+        <nav class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </nav>
+
+        <!-- Tasks List -->
+        <main class="todo-list-container">
+            <ul id="todo-list">
+                <!-- Tasks will be injected here by JS -->
+            </ul>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <p>Your workspace is clear.</p>
+                <span>Add a task to get started!</span>
+            </div>
+        </main>
+
+        <!-- Control Bar -->
+        <footer class="controls">
+            <button id="clear-completed" class="clear-btn">
+                <i class="fa-solid fa-broom"></i> Clear Completed
+            </button>
+        </footer>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 TaskFlow Designer. Built with ❤️ for Professionals.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
